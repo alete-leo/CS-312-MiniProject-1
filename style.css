@@ -1,0 +1,452 @@
+
+.container{
+    display: flex;
+	flex-wrap: wrap;
+	justify-content: center; 
+    
+    display: grid;
+	/* grid-template-rows: repeat(3, 1fr); */
+	/* grid-template-columns: repeat(3, 1fr); not anymore cuz of the areas */
+	grid-template-rows: auto 1000px auto; /* middle is the main & this determines vertical idk why*/
+	grid-template-columns: 20% auto;
+	/* 200px width of sidebar and auto for main content */
+	grid-template-areas:
+	"header header header"
+	"sidebar main main"
+	"footer footer footer";
+	/* (this means place the grid in hear three times) */
+    row-gap: 20px;
+    column-gap: 20px;
+    color: black;
+
+    margin-top: 75px;
+    margin-bottom: 100px;
+    
+
+
+}
+
+div {
+	background-color: lightgray;
+	border: 2px solid black;
+	padding: 20px;
+	color: rgb(0, 0, 0);
+	text-align: center;
+}
+
+
+
+
+.header{
+	grid-area: header;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 5;
+    flex-shrink: 0;
+
+    
+}
+
+
+
+
+
+.sidebar{
+    /* Utilize Flexbox to position the sidebar that contains navigation elements.
+    Make the sidebar a Flexbox container and arrange the navigation items vertically.
+    Apply Flexbox properties like justify-content and align-items to control the alignment of navigation items within the sidebar. */
+	grid-area: sidebar;
+    max-height: 500px;
+
+    padding: 2px;
+    background-color: skyblue;
+    border-radius: 50px;
+    
+
+    position: sticky;
+    top: 150px;
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-around; /* Centers horizontally */
+    align-items: stretch;
+
+    
+
+    /* Place the option (download) in the left navigation menu using position absolute.
+    Use CSS properties such as background color, padding, curved borders, and hover effects to enhance 
+    the appearance and interactivity of the resume download button. */
+
+}
+
+.sidebar > *{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-grow: 1;
+}
+
+
+.main-content{
+    
+    align-items: center;
+    position: relative;
+
+	grid-area: main;
+    overflow: auto; 
+    
+    /*display: flex;
+    flex-direction: column;
+	flex-wrap: nowrap; */
+    
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+    justify-content: center; 
+
+	/* justify-content: center; */
+    img {
+        width: 50%;
+    }
+
+    * {
+        /*
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+
+
+        flex-grow: 1;
+        flex-shrink: 1;
+        */
+    }
+
+    /* Implement a Flexbox layout to organize and align the skillset section.
+    Utilize Flexbox properties such as display: flex, justify-content, align-items, and flex-wrap to create a responsive and visually appealing layout for showcasing your skills.
+    Play around with flex directions (row and column) and observe how it affects the other flex properties. */
+
+    /* Projects - Create a grid container and define grid rows and columns to effectively display project titles, descriptions, and images.
+    Experiment with grid-template-columns, grid-gap, and other grid properties to achieve the desired layout */
+
+    
+}
+
+/*
+
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    flex-grow: 1;
+
+    * {
+        display: flexbox;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+
+
+        flex-grow: 1;
+        flex-shrink: 1;
+
+
+    }
+}
+
+
+.main-content > *{
+    
+}
+*/
+
+/* Utilize CSS selectors to target the HTML elements within your summary, education, and experience sections.
+Apply styling properties such as font size, color, margin, and padding to enhance readability and visual appeal. */
+
+thead{
+    padding: 2px;
+    background-color: aliceblue;
+    border-radius: 50px;
+    color: purple;
+}
+
+td{
+    padding: 2px;
+    background-color: antiquewhite;
+    border-radius: 0px;
+    color: purple;
+}
+
+
+h2{
+    padding: 2px;
+    background-color: aliceblue;
+    border-radius: 50px;
+    color: purple;
+}
+
+.main-content h3{
+    padding: 2px;
+    border-radius: 50px;
+    color: brown;
+}
+
+.main-content b{
+    padding: 2px;
+    background-color: skyblue;
+    border-radius: 50px;
+}
+
+.main-content ul{
+    font-family: cursive;
+    text-align: left;
+    display: inline-block;
+}
+
+li{
+    text-align: left;
+}
+
+
+
+
+.footer{
+	grid-area: footer;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height:100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+
+    
+
+}
+
+/* Contact - Place your contact information in the footer. Use CSS positioning techniques to style the contact information section.
+Apply absolute or relative positioning to position the contact details within the webpage. 
+Experiment with top, bottom, left, and right properties to achieve the desired placement. */
+
+#contact{
+    padding: 2px;
+    background-color: skyblue;
+    border-radius: 50px;
+    position: relative;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+
+
+.imageContainer{
+	background-image: url("./banner.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 50px;
+}
+
+#skills {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#projects{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+
+#project {
+    float: left;
+    img {
+        width: 25%;
+    }
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px;
+    align-items: center;
+    justify-content: center; 
+
+    * {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    #animations {
+        grid-column-start: span 3;
+    }
+
+    #pen{
+        grid-column-start: 2;
+    }
+    
+}
+
+
+
+#downloadPortfolio {
+    background-color: pink;
+    padding: 2px;
+    border-radius: 50px;
+    font-size: 80%;
+    transition-property: all;
+    transition-duration: 0.5s;
+    
+    
+    
+
+
+}
+
+#downloadPortfolio:hover {
+    background-color: purple;
+    font-size: 100%;
+    /* border-radius: 50px;
+    box-shadow: 50px;
+    width: 40%; */
+    transform: scale(0.8);
+
+    
+
+}
+
+
+
+
+#skill {
+    border-radius: 50px;
+    transition-property: all;
+    transition-duration: 0.5s;
+    transform: rotate(5deg);
+    padding: 0px;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    ul {
+        transform: rotate(-10deg);
+        transition-property: all;
+        transition-duration: 0.5s;
+        text-shadow:10px;
+    }
+
+    
+
+}
+
+
+
+#skill:hover {
+    
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    transform: rotate(-5deg);
+    padding: 0px;
+    width: 50%;
+    border-radius: 500px;
+    background-color: whitesmoke;
+    text-shadow: 50px;
+    ul {
+        transform: rotate(10deg);
+        text-shadow:0px;
+    }
+    
+}
+
+img {
+    
+    transition-property: all;
+    transition-duration: 0.5s;
+
+    
+}
+img:hover {
+    
+    transform: rotate(-5deg);
+    padding: 0px;
+    width: 50%;
+    border-radius: 50px;
+    opacity: 50%;
+    width: 40%;
+
+    
+}
+
+
+
+@media (min-width: 0px) and (max-width: 479px) {
+    body {
+        font-size: 0.75em;
+    }
+    .container {
+        grid-template-rows: auto 200px 400px auto; /* middle is the main & this determines vertical idk why*/
+        grid-template-columns: 50% auto;
+        /* 200px width of sidebar and auto for main content */
+        grid-template-areas:
+        "header header header"
+        "sidebar sidebar sidebar"
+        "main main main"
+        "footer footer footer";
+    }
+}
+
+
+@media (min-width: 480px) and (max-width: 768px) {
+    body {
+        font-size: .8em;
+    }
+    .container {
+        grid-template-rows: auto 200px 400px auto; /* middle is the main & this determines vertical idk why*/
+        grid-template-columns: 50% auto;
+        /* 200px width of sidebar and auto for main content */
+        grid-template-areas:
+        "header header header"
+        "sidebar sidebar sidebar"
+        "main main main"
+        "footer footer footer";
+    }
+    .container {
+        grid-template-columns: 30% auto;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 4000px) {
+    body {
+        font-size: 1em;
+    }
+}
+
+
+
