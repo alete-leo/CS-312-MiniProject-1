@@ -27,20 +27,6 @@ app.post("/submit", (req, res) => {
 
 
 
-// blog routing
-app.get("/edit/:id", (req, res) => { // goes to webpage of the :id var
-    const postId = Number(req.params.id);
-    const postToEdit = posts.find((post) => post.id === postId);
-
-    if (!postToEdit) { // the webpage was crashing w/o this
-        return res.redirect("/");
-    }
-
-    res.render("index.ejs", {
-        posts: posts,
-        editPost: postToEdit
-    });
-});
 
 
 // blog stuff
@@ -61,10 +47,43 @@ app.post("/submit", (req, res) => {
     console.log(newPost);
     console.log(posts);
 
+    res.render("index.ejs");
+});
+
+
+// edit
+app.get("/edit/:id", (req, res) => {
+    const postId = Number(req.params.id);
+    const postToEdit = posts.find((post) => post.id === postId);
+
+    if (!postToEdit) {
+        return res.redirect("/");
+    }
+
     res.render("index.ejs", {
-        posts: posts
+        posts: posts,
+        editPost: postToEdit
     });
 });
+app.post("/edit/:id", (req, res) => {
+    const postId = Number(req.params.id);
+    const postToEdit = posts.find((post) => post.id === postId);
+
+    if (!postToEdit) {
+        return res.redirect("/");
+    }
+
+    postToEdit.title = req.body.title;
+    postToEdit.author = req.body.author;
+    postToEdit.content = req.body.content;
+
+    res.render("index.ejs");
+});
+
+
+
+
+
 
 /* sample
 [
