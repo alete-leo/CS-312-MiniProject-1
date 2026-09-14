@@ -5,7 +5,7 @@ console.log("Script is running");
 
 const app = express();
 const port = 3000;
-
+const posts = [];
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public")); // for the css
@@ -45,7 +45,7 @@ app.get("/edit/:id", (req, res) => { // goes to webpage of the :id var
 
 // blog stuff
 
-const posts = [];
+
 
 // create the post from data
 app.post("/submit", (req, res) => {
@@ -58,8 +58,12 @@ app.post("/submit", (req, res) => {
     };
 
     posts.push(newPost); //from 212 js lsn, to add to end of array
+    console.log(newPost);
+    console.log(posts);
 
-    res.redirect("/"); // I hope this is ok, this'll just refresh the page to display the changes but I know we want versitality. 
+    res.render("index.ejs", {
+        posts: posts
+    });
 });
 
 /* sample
