@@ -24,38 +24,63 @@
 
 -->
 
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog</title>
+    <link rel="stylesheet" href="/styles/content.css">
   </head>
 
+    <h1>Blog</h1>
 
-  <body>
-    <% if (locals.numberOfLetters) { %>
-    <h1>There are <%= numberOfLetters %> blog posts here.</h1>
-    <% } else { %>
-    
-    <% } %>
-    <h1>Create a post to this blog!</h1>
-    <form action="/submit" method="POST">
-        <div id="inputForm">
-            <input type="text" name="fName" placeholder="Blog Title" />
-            <input type="text" name="lName" placeholder="Your Name" />
-            <p>
-                <input type="text" name="blogDate" placeholder="Creation Date: <%= new Date().toDateString() %>" /> <!-- disable this & input the date -->
-            </p>
-            <p>
-                <input type="text" name="blogContent" placeholder="Enter Your Blog Here" />
-            </p>
-      
-            <p></p>
-            <input type="submit" value="OK" />
-        </div>
+    <section>
+        <h2>Blog Post Creation!</h2>
+
+        <form action="/submit" method="POST">
+            <div>
+                <label for="title">Blog Title</label> <!-- the for -->
+                <input type="text" id="title" name="title" placeholder="Enter your blog title"/>
+            </div>
+
+            <div>
+                <label for="author">Your Name</label>
+                <input type="text" id="author" name="author" placeholder="Enter your name"/>
+            </div>
+
+            <div>
+                <label for="content">Blog Content</label>
+                <textarea id="content" name="content" placeholder="Write your blog post here..." rows="8"></textarea> <!-- I found textarea to be bigger -->
+            </div>
+            <button type="submit">Create Post</button>
+
+        </form>
+    </section>
+    <section> <!-- to separate the created ones -->
+        <h2>Look at other posts!</h2>
+        <% if (!locals.posts || locals.posts.length === 0) { %> <!-- just using locals didn't work so had to also do if not existent-->
+            <p>No blog posts yet. Create the first one!</p>
+        <% } else { %>
+            <% posts.forEach((post) => { %>
+                <article>
+                <h3><%= post.title %></h3>
+                <p> Created by author <%= post.author %> on <%= post.date %> </p>
+                <p><%= post.content %></p>
+
+                <a href="/edit/<%= post.id %>">Edit</a>
+
+                <form action="/delete/<%= post.id %>" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+
+                </article>
+
+            <% }); %>
+        <% } %>
+
+    </section>
+
       
     </form>
   </body>
