@@ -28,6 +28,49 @@ app.post("/submit", (req, res) => {
 
 
 // blog routing
+
+app.get("/delete/:id", (req, res) => { // goes to webpage of the :id var
+    const postId = Number(req.params.id);
+    const postToDelete = posts.find((post) => post.id === postId); //changed to find index
+
+    if (!postToDelete) { // the webpage was crashing w/o this
+        return res.redirect("/");
+    }
+
+    res.render("index.ejs", {
+        posts: posts, //gives post array 
+        editPost: postToDelete //gives access to const postToEdit which finds the postID and content
+    });
+});
+
+app.post("/delete/:id", (req, res) => {
+    const postId = Number(req.params.id);
+    const postToDelete = posts.find((post) => post.id === postId);
+
+    if (!postToDelete) { //anti-crash code again
+        return res.redirect("/");
+    }
+
+    /* postToEdit.title = req.body.title;
+    postToEdit.author = req.body.author;
+    postToEdit.content = req.body.content; */
+    //postToDelete.length = 0; didn't work
+    delete postToDelete.title;
+    delete postToDelete.author;
+    delete postToDelete.content;
+    delete postToDelete.length;
+    postToDelete.
+    console.log("deleted");
+
+    // res.redirect("/"); // having issues rn where it doesn't re-render what's in the array
+    res.render("index.ejs", {
+        posts: posts
+    }); //this seemed to fix it
+});
+
+
+//edit
+
 app.get("/edit/:id", (req, res) => { // goes to webpage of the :id var
     const postId = Number(req.params.id);
     const postToEdit = posts.find((post) => post.id === postId);
