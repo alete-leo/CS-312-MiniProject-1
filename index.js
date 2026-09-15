@@ -31,7 +31,7 @@ app.post("/submit", (req, res) => {
 
 app.get("/delete/:id", (req, res) => { // goes to webpage of the :id var
     const postId = Number(req.params.id);
-    const postToDelete = posts.find((post) => post.id === postId); //changed to find index
+    const postToDelete = posts.find((post) => post.id === postId); 
 
     if (!postToDelete) { // the webpage was crashing w/o this
         return res.redirect("/");
@@ -45,27 +45,17 @@ app.get("/delete/:id", (req, res) => { // goes to webpage of the :id var
 
 app.post("/delete/:id", (req, res) => {
     const postId = Number(req.params.id);
-    const postToDelete = posts.find((post) => post.id === postId);
+    const postIndex = posts.findIndex((post) => post.id === postId); //changed to find index, not matching with app.get yet but it's working
 
-    if (!postToDelete) { //anti-crash code again
+    if (postIndex === -1) {
         return res.redirect("/");
     }
-
-    /* postToEdit.title = req.body.title;
-    postToEdit.author = req.body.author;
-    postToEdit.content = req.body.content; */
-    //postToDelete.length = 0; didn't work
-    delete postToDelete.title;
-    delete postToDelete.author;
-    delete postToDelete.content;
-    delete postToDelete.length;
-    postToDelete.
+    posts.splice(postIndex, 1);
     console.log("deleted");
-
-    // res.redirect("/"); // having issues rn where it doesn't re-render what's in the array
     res.render("index.ejs", {
-        posts: posts
-    }); //this seemed to fix it
+        posts: posts, //gives post array 
+
+    });
 });
 
 
