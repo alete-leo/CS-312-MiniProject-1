@@ -87,6 +87,33 @@ removed the sample code here cuz it was causing issues
 
     </section>
 
-      
+    
+<% if (locals.editPost) { %>
+
+<form id="editForm" action="/edit/<%= editPost.id %>" method="POST">
+    <input type="hidden" id="editTitle" name="title">
+    <input type="hidden" id="editAuthor" name="author">
+    <input type="hidden" id="editContent" name="content">
+</form>
+
+<script> //sorry about the usage of scripts and alerts, I wasn't able to do the other way I wanted for edits
+    const title = prompt("Edit title:", "<%= editPost.title %>");
+    const author = prompt("Edit author:", "<%= editPost.author %>");
+    const content = prompt("Edit content:", "<%= editPost.content %>");
+
+    if (title !== null && author !== null && content !== null) {
+        document.getElementById("editTitle").value = title;
+        document.getElementById("editAuthor").value = author;
+        document.getElementById("editContent").value = content;
+
+        document.getElementById("editForm").submit();
+    } else {
+        alert("didn't input");
+        window.location.href = "/";
+    }
+</script>
+
+<% } %>
+
 </html>
 

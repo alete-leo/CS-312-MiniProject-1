@@ -37,10 +37,31 @@ app.get("/edit/:id", (req, res) => { // goes to webpage of the :id var
     }
 
     res.render("index.ejs", {
-        posts: posts,
-        editPost: postToEdit
+        posts: posts, //gives post array 
+        editPost: postToEdit //gives access to const postToEdit which finds the postID and content
     });
 });
+
+// updated edit post
+app.post("/edit/:id", (req, res) => {
+    const postId = Number(req.params.id);
+    const postToEdit = posts.find((post) => post.id === postId);
+
+    if (!postToEdit) { //anti-crash code again
+        return res.redirect("/");
+    }
+
+    postToEdit.title = req.body.title;
+    postToEdit.author = req.body.author;
+    postToEdit.content = req.body.content;
+
+    // res.redirect("/"); // having issues rn where it doesn't re-render what's in the array
+    res.render("index.ejs", {
+        posts: posts
+    }); //this seemed to fix it
+});
+
+
 
 
 // blog stuff
